@@ -3,10 +3,11 @@ filename = input("type file: ")
 if (filename[len(filename)-4:len(filename)] != ".bad") and (filename[len(filename)-5:len(filename)] != ".bad/"):
     print("Warning: Filename not a .bad!")
 thing = open(filename,"r")
-variables = {"null": 0}
+variables = {"ifvar": 0}
 linenum = 0
 nextif = -1
 for line in thing:
+    variables["ifvar"] = nextif
     linenum += 1
     if line[:6] == "print ":
         if line[6:7] == "_":
