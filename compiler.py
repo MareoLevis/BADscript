@@ -7,7 +7,7 @@ variables = {"ifvar": 0}
 linenum = 0
 nextif = -1
 for line in thing:
-    variables["ifvar"] = nextif
+    variables["ifvar"] = str(nextif)
     linenum += 1
     if line[:6] == "print ":
         if line[6:7] == "_":
@@ -26,7 +26,7 @@ for line in thing:
             quit()
         inp = line[6:(len(line)-2)]
         inputstr = inp.split("|")[0]
-        variables[inp.split("|")[1]] = input(inputstr + "? ")
+        variables[inp.split("|")[1]] = input(inputstr + " ")
     elif line[:3] == "if ":
         if not (line.find("==")):
             print("Error in line "+str(linenum)+": Missing comparison")
@@ -52,5 +52,5 @@ for line in thing:
     elif line[:2] == "//":
         pass
     else:
-        print("Error in line ",str(linenum),": Unrunnable code")
+        print("Error in line ",str(linenum),": Unknown function '" + line.split(" ")[0] + "'")
         quit()
