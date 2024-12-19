@@ -21,12 +21,12 @@ for line in thing:
     elif line[:5] == "wait ":
         time.sleep(int(line[5:len(line)])/100)    
     elif line[:6] == "input(":
-        if not line.find("?"):
-            print("Error in line "+str(linenum)+": Missing ?")
+        if not line.find("|"):
+            print("Error in line "+str(linenum)+": Missing break")
             quit()
         inp = line[6:(len(line)-2)]
-        inputstr = inp.split("?")[0]
-        variables[inp.split("?")[1]] = input(inputstr + " ")
+        inputstr = inp.split("|")[0]
+        variables[inp.split("|")[1]] = input(inputstr + "? ")
     elif line[:3] == "if ":
         if not (line.find("==")):
             print("Error in line "+str(linenum)+": Missing comparison")
@@ -44,11 +44,11 @@ for line in thing:
             nextif = 0
     elif line[:7] == "setvar(":
         if not line.find("?"):
-            print("Error in line "+str(linenum)+": Missing ?")
+            print("Error in line "+str(linenum)+": Missing break")
             quit()
         var = line[6:(len(line)-2)]
-        varstr = var.split("?")[0]
-        variables[varstr] = var.split("?")[1]
+        varstr = var.split("|")[0]
+        variables[varstr] = var.split("|")[1]
     elif line[:2] == "//":
         pass
     else:
